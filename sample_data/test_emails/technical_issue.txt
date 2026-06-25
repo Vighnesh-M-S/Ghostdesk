@@ -1,0 +1,29 @@
+Subject: Dashboard Showing Error 503 – Critical Business Impact
+
+Hello Support,
+
+I'm experiencing a critical technical issue with your platform. Our entire team dashboard has been displaying a "503 Service Unavailable" error since yesterday morning (November 3, 2024, approx. 09:00 AM IST).
+
+This is causing significant disruption to our daily operations and we need this resolved urgently.
+
+Environment details:
+- Browser: Chrome 119.0.6045.105
+- Operating System: Windows 11
+- Error Code: 503 Service Unavailable
+- Started: November 3, 2024 at ~09:00 AM IST
+- Affected users: All 12 members of our operations team
+
+Troubleshooting steps already attempted:
+1. Cleared browser cache and cookies
+2. Tried incognito/private browsing mode
+3. Tested on different networks (office WiFi + mobile hotspot)
+4. Tried Firefox and Microsoft Edge — same error
+5. Direct API calls also return 503
+
+This is a production issue affecting our enterprise account (ENT-5521). We have an SLA that guarantees 99.9% uptime and this outage has now exceeded 4 hours.
+
+Please treat this as P1 priority. Our technical lead John Doe can be reached at john.doe@company.com or 020-4567-8901.
+
+Best regards,
+John Doe
+Account ID: ENT-5521
