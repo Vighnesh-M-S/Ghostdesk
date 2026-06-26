@@ -69,6 +69,15 @@ def pii_redaction_node(state: GhostDeskState) -> dict:
         ]
         results = analyzer.analyze(text=email_text, entities=entities, language="en")
 
+        # Drop false-positive PERSON hits on alphanumeric IDs (e.g. BK-459821, INV-2024-8834)
+        results = [
+            r for r in results
+            if not (
+                r.entity_type == "PERSON"
+                and re.search(r"[0-9]", email_text[r.start:r.end])
+            )
+        ]
+
         operators = {
             entity: OperatorConfig("replace", {"new_value": _REPLACEMENTS.get(entity, "[REDACTED]")})
             for entity in entities
