@@ -10,7 +10,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_URL = os.getenv("GHOSTDESK_API_URL", "http://localhost:8000")
+# Streamlit Cloud secrets take priority, then env var, then local default
+try:
+    API_URL = st.secrets.get("GHOSTDESK_API_URL", os.getenv("GHOSTDESK_API_URL", "http://localhost:8000"))
+except Exception:
+    API_URL = os.getenv("GHOSTDESK_API_URL", "http://localhost:8000")
 
 st.set_page_config(
     page_title="GhostDesk — AI Support Employee",
