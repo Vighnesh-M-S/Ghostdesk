@@ -66,7 +66,7 @@ pip install -r requirements.txt
 ### 2. Download spaCy model (required by Presidio)
 
 ```bash
-python -m spacy download en_core_web_lg
+python -m spacy download en_core_web_sm
 ```
 
 ### 3. Install Tesseract OCR (for image attachments)
