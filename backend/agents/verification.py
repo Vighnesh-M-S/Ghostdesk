@@ -24,7 +24,9 @@ Respond with ONLY a valid JSON object:
 }"""
 
 
-def _parse_json(content: str) -> dict:
+def _parse_json(content) -> dict:
+    if isinstance(content, list):
+        content = "".join(part.get("text", "") if isinstance(part, dict) else str(part) for part in content)
     content = content.strip()
     if "```json" in content:
         content = content.split("```json")[1].split("```")[0].strip()
@@ -45,7 +47,7 @@ def verification_node(state: GhostDeskState) -> dict:
 
     try:
         llm = ChatGoogleGenerativeAI(
-            model=os.getenv("GEMINI_MODEL", "gemini-1.5-flash"),
+            model=os.getenv("GEMINI_MODEL", "gemini-flash-latest"),
             google_api_key=os.getenv("GEMINI_API_KEY"),
             temperature=0.1,
         )
