@@ -2,7 +2,7 @@ import json
 import logging
 import os
 from backend.models import GhostDeskState
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 
 logger = logging.getLogger(__name__)
@@ -49,9 +49,9 @@ def risk_detection_node(state: GhostDeskState) -> dict:
     errors = list(state.get("processing_errors", []))
 
     try:
-        llm = ChatGoogleGenerativeAI(
-            model=os.getenv("GEMINI_MODEL", "gemini-flash-latest"),
-            google_api_key=os.getenv("GEMINI_API_KEY"),
+        llm = ChatGroq(
+            model=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
+            api_key=os.getenv("GROQ_API_KEY"),
             temperature=0.1,
         )
 

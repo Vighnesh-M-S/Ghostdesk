@@ -12,11 +12,8 @@ requests>=2.32.0
 # LangGraph / LangChain
 langgraph>=0.2.0
 langchain>=0.2.0
-langchain-google-genai>=1.0.6
+langchain-groq>=0.2.0
 langsmith>=0.1.77
-
-# Gemini
-google-generativeai>=0.7.0
 
 # PII Protection
 presidio-analyzer>=2.2.354

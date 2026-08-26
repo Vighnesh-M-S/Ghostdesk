@@ -6,9 +6,9 @@ services:
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
-      - key: GEMINI_API_KEY
+      - key: GROQ_API_KEY
         sync: false          # set manually in Render dashboard
-      - key: GEMINI_MODEL
-        value: gemini-flash-latest
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-20b
       - key: GHOSTDESK_DB_PATH
         value: /tmp/ghostdesk.db

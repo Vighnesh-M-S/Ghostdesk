@@ -3,7 +3,7 @@ import json
 import logging
 import os
 from backend.models import GhostDeskState
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 
 logger = logging.getLogger(__name__)
@@ -79,9 +79,9 @@ def attachment_analysis_node(state: GhostDeskState) -> dict:
         return {"attachment_summary": "No attachments provided.", "processing_errors": errors}
 
     try:
-        llm = ChatGoogleGenerativeAI(
-            model=os.getenv("GEMINI_MODEL", "gemini-flash-latest"),
-            google_api_key=os.getenv("GEMINI_API_KEY"),
+        llm = ChatGroq(
+            model=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
+            api_key=os.getenv("GROQ_API_KEY"),
             temperature=0.1,
         )
 
@@ -126,7 +126,10 @@ def attachment_analysis_node(state: GhostDeskState) -> dict:
                 SystemMessage(content=summary_prompt),
                 HumanMessage(content=json.dumps(all_analyses, indent=2)),
             ])
-            human_summary = sr.content.strip()
+            content = sr.content
+            if isinstance(content, list):
+                content = "".join(part.get("text", "") if isinstance(part, dict) else str(part) for part in content)
+            human_summary = content.strip()
         else:
             human_summary = f"{len(attachments)} file(s) provided but no text could be extracted."
 
