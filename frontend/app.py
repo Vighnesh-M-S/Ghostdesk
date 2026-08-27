@@ -330,7 +330,7 @@ def _render_results(data: dict):
         )
     else:
         st.markdown(
-            "<div class='alert-green'>✅ <b>AUTO-APPROVED</b> — No human review required</div>",
+            "<div class='alert-green'>✅ <b>RESOLVED WITHOUT HUMAN REVIEW</b></div>",
             unsafe_allow_html=True,
         )
 
