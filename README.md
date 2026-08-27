@@ -2,7 +2,15 @@
 
 > Humans should not spend time reading support requests. They should only make decisions when judgment is required.
 
-GhostDesk is an AI-powered support automation system that reads customer emails, redacts PII before AI processing, analyzes attachments, verifies claims, assesses risk, and recommends actions — all through a LangGraph multi-agent workflow.
+🎥 **[Watch the 2-minute pitch](https://www.loom.com/share/35c731d44d274046ad20e34c8f8a714c)** · 🚀 **[Try the live demo](https://ghost-desk.streamlit.app/)**
+
+## Why GhostDesk exists
+
+Say every customer email lands at `queries@xyz.com`. Today, a human opens every single one before anything happens. GhostDesk changes that: an AI agent reads the email first, decides what it means, and resolves it — a refund, a ticket, a request for more information — without a human touching the inbox by default. A human only enters the loop when the agent's own confidence or risk assessment decides it shouldn't act alone.
+
+The hard part was never getting an LLM to answer correctly — it's that answering at all usually means sending raw customer PII to a third-party model first. Most support-AI deployments bolt data protection on after the fact. GhostDesk redacts PII *before* any model call, gates every auto-resolution behind explicit confidence/risk thresholds, and writes every decision to a structured trace log a compliance reviewer can actually read. It's built compliance-first from line one, not retrofitted — which matters directly under regulations like India's DPDP Act, where sending unredacted customer PII to a US-hosted model is a live data-fiduciary and cross-border-transfer concern today, not a future one.
+
+Under the hood, it's a LangGraph multi-agent workflow: redact PII, analyze attachments, verify claims against evidence, assess risk, then recommend an action — with a human in the loop only when the pipeline decides it needs one.
 
 ---
 
@@ -178,3 +186,9 @@ Ghostdesk/
 ├── .env.example
 └── README.md
 ```
+
+---
+
+## A note on the live demo
+
+The backend is hosted on Render's free tier, which spins down after ~15 minutes of inactivity. If you're the first person to hit [the live app](https://ghost-desk.streamlit.app/) after a period of idleness, the first request can take 30-50 seconds while the server cold-starts — that's Render, not GhostDesk. Give it one request to wake up, and every request after that is fast.
