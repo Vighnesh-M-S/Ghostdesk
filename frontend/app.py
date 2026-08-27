@@ -132,10 +132,12 @@ with st.sidebar:
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 SAMPLE_EMAILS = {
-    "Refund Request": Path("sample_data/test_emails/refund_request.txt"),
-    "Technical Issue": Path("sample_data/test_emails/technical_issue.txt"),
-    "Fraud Scenario": Path("sample_data/test_emails/fraud_scenario.txt"),
+    "Refund Request": BASE_DIR / "sample_data" / "test_emails" / "refund_request.txt",
+    "Technical Issue": BASE_DIR / "sample_data" / "test_emails" / "technical_issue.txt",
+    "Fraud Scenario": BASE_DIR / "sample_data" / "test_emails" / "fraud_scenario.txt",
 }
 
 ACTION_LABELS = {

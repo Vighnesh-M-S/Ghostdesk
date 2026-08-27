@@ -28,7 +28,14 @@ def init_db():
     conn.close()
 
 
-def save_result(state: dict):
+def log_decision_trace(state: dict):
+    """Record the pipeline's decision output for this request: intent, confidence,
+    risk score, recommended action, and whether it was escalated to a human.
+
+    This is a decision trace for analytics and review — not a compliance audit
+    trail. It does not store the raw or redacted email body, does not enforce
+    immutability, and does not record actor identity or access history.
+    """
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     final = state.get("final_output") or state

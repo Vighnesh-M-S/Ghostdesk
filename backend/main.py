@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 from backend.workflow import workflow
-from backend.database import init_db, save_result, get_analytics, get_history
+from backend.database import init_db, log_decision_trace, get_analytics, get_history
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s — %(message)s")
 logger = logging.getLogger(__name__)
@@ -73,8 +73,8 @@ async def process_email(
 
         result = workflow.invoke(initial_state)
 
-        # Persist (drop binary before saving)
-        save_result(result)
+        # Persist decision trace (drop binary before saving)
+        log_decision_trace(result)
 
         # Strip binary content from response
         response_data = result.get("final_output") or result
