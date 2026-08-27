@@ -28,7 +28,7 @@ Email + Attachments
 |-------|------|
 | `EMAIL_PARSER` | Normalize raw email text |
 | `PII_REDACTION` | Redact names, phones, emails, cards using Presidio |
-| `INTENT_CLASSIFICATION` | Classify intent with Gemini (7 categories) |
+| `INTENT_CLASSIFICATION` | Classify intent with an LLM via Groq (7 categories) |
 | `ATTACHMENT_ANALYSIS` | Extract text from PDFs/images, generate summaries |
 | `VERIFICATION` | Compare email claims against attachment evidence |
 | `RISK_DETECTION` | Detect fraud signals, mismatches, suspicious patterns |
@@ -44,7 +44,7 @@ Email + Attachments
 | Frontend | Streamlit |
 | Backend | FastAPI |
 | Agent Framework | LangGraph |
-| LLM | Gemini 1.5 Flash (Google) |
+| LLM | Groq (`openai/gpt-oss-20b`) |
 | PII Protection | Microsoft Presidio |
 | Document Processing | pdfplumber, PyMuPDF, pytesseract |
 | Database | SQLite |
@@ -79,10 +79,10 @@ python -m spacy download en_core_web_sm
 
 ```bash
 cp .env.example .env
-# Edit .env and add your GEMINI_API_KEY
+# Edit .env and add your GROQ_API_KEY
 ```
 
-Get a Gemini API key at: https://aistudio.google.com/apikey
+Get a free Groq API key at: https://console.groq.com/keys
 
 ### 5. Generate sample PDF attachments (optional)
 

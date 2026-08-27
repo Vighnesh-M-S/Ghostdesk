@@ -121,7 +121,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown(
         "<div style='font-size:0.75rem;color:#4b5563'>"
-        "Powered by Gemini · LangGraph<br>PII protected by Presidio"
+        "Powered by Groq · LangGraph<br>PII protected by Presidio"
         "</div>",
         unsafe_allow_html=True,
     )
